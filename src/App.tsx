@@ -5,6 +5,8 @@ import Dashboard from './views/Dashboard';
 import HardwareTwin from './views/HardwareTwin';
 import Topology from './views/Topology';
 import Performance from './views/Performance';
+import Alarms from './views/Alarms';
+import Settings from './views/Settings';
 
 export default function App() {
   const [currentView, setCurrentView] = useState('dashboard');
@@ -16,6 +18,8 @@ export default function App() {
       case 'hardware': return <HardwareTwin setCurrentView={setCurrentView} selectedDevice={selectedDevice} />;
       case 'topology': return <Topology setCurrentView={setCurrentView} setSelectedDevice={setSelectedDevice} />;
       case 'performance': return <Performance />;
+      case 'alarms': return <Alarms />;
+      case 'settings': return <Settings />;
       default: return <Dashboard setCurrentView={setCurrentView} setSelectedDevice={setSelectedDevice} />;
     }
   };

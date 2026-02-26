@@ -1,5 +1,5 @@
 import React from 'react';
-import { LayoutDashboard, Server, Network, ShieldAlert, Settings, Activity, LogOut } from 'lucide-react';
+import { LayoutDashboard, Server, Network, ShieldAlert, Settings, Activity, LogOut, Bell } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface SidebarProps {
@@ -13,6 +13,7 @@ export default function Sidebar({ currentView, setCurrentView }: SidebarProps) {
     { id: 'hardware', icon: Server, label: '设备孪生' },
     { id: 'topology', icon: Network, label: '拓扑管理' },
     { id: 'performance', icon: Activity, label: '性能监控' },
+    { id: 'alarms', icon: Bell, label: '告警通知' },
   ];
 
   return (
@@ -47,10 +48,22 @@ export default function Sidebar({ currentView, setCurrentView }: SidebarProps) {
       </nav>
 
       <div className="w-full flex flex-col items-center gap-4 mt-auto">
-        <button className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+        <button 
+          onClick={() => setCurrentView('settings')}
+          className={`w-10 h-10 flex items-center justify-center rounded-lg transition-all relative group ${
+            currentView === 'settings' ? 'text-primary bg-primary/10 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+          }`}
+          title="系统设置"
+        >
+          {currentView === 'settings' && (
+            <motion.div
+              layoutId="sidebar-active"
+              className="absolute left-[-12px] top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"
+            />
+          )}
           <Settings className="w-5 h-5" />
         </button>
-        <button className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+        <button className="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5" title="退出登录">
           <LogOut className="w-5 h-5" />
         </button>
       </div>
