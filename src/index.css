@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: #0a1216;
+  --color-surface: #132329;
+  --color-surface-light: #1a2c33;
+  --color-border: #1f3640;
+  --color-primary: #25c0f4;
+  --color-primary-dark: #1aa8d6;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-slate-300 font-sans antialiased overflow-hidden;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-surface/80 backdrop-blur-md border border-primary/20 shadow-lg;
+  }
+  .glow-text {
+    text-shadow: 0 0 10px rgba(37, 192, 244, 0.5);
+  }
+  .shadow-glow {
+    box-shadow: 0 0 15px rgba(37, 192, 244, 0.3);
+  }
+  .shadow-glow-success {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+  }
+  .shadow-glow-warning {
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+  }
+  .shadow-glow-danger {
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
+  }
+}
