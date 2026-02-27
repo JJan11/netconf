@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Server, Shield, Activity, Cpu } from 'lucide-react';
+import DeviceImage from '../components/DeviceImage';
 
 const stats = [
   { label: '设备总量 (Total Assets)', value: '1,248', trend: '+12', icon: Server, color: 'text-primary', bg: 'bg-primary' },
@@ -10,12 +11,12 @@ const stats = [
 ];
 
 const devices = [
-  { id: '1', name: 'H3C S7600', type: 'Core Switch', ip: '192.168.10.1', status: 'ONLINE', cpu: 45, mem: 62, img: 'https://picsum.photos/seed/switch1/400/300', model: 'S7600' },
-  { id: '2', name: 'Huawei USG6535E', type: 'Firewall', ip: '192.168.10.254', status: 'ONLINE', cpu: 25, mem: 30, img: 'https://picsum.photos/seed/firewall1/400/300', model: 'USG6535E' },
-  { id: '3', name: 'H3C S5500', type: 'Access Switch', ip: '192.168.10.105', status: 'WARNING', cpu: 85, mem: 40, img: 'https://picsum.photos/seed/switch2/400/300', model: 'S5500' },
-  { id: '4', name: 'Huawei S7700', type: 'Core Switch', ip: '192.168.20.1', status: 'ONLINE', cpu: 32, mem: 55, img: 'https://picsum.photos/seed/switch3/400/300', model: 'S7700' },
-  { id: '5', name: 'H3C M9000', type: 'Firewall', ip: '10.0.0.1', status: 'ONLINE', cpu: 15, mem: 20, img: 'https://picsum.photos/seed/gateway1/400/300', model: 'M9000' },
-  { id: '6', name: 'H3C L5030', type: 'Load Balancer', ip: '192.168.30.5', status: 'OFFLINE', cpu: 0, mem: 0, img: 'https://picsum.photos/seed/lb1/400/300', model: 'L5030' },
+  { id: '1', name: 'H3C S7600', type: 'Core Switch', ip: '192.168.10.1', status: 'ONLINE', cpu: 45, mem: 62, model: 'S7600' },
+  { id: '2', name: 'Huawei USG6535E', type: 'Firewall', ip: '192.168.10.254', status: 'ONLINE', cpu: 25, mem: 30, model: 'USG6535E' },
+  { id: '3', name: 'H3C S5500', type: 'Access Switch', ip: '192.168.10.105', status: 'WARNING', cpu: 85, mem: 40, model: 'S5500' },
+  { id: '4', name: 'Huawei S7700', type: 'Core Switch', ip: '192.168.20.1', status: 'ONLINE', cpu: 32, mem: 55, model: 'S7700' },
+  { id: '5', name: 'H3C M9000', type: 'Firewall', ip: '10.0.0.1', status: 'ONLINE', cpu: 15, mem: 20, model: 'M9000' },
+  { id: '6', name: 'H3C L5030', type: 'Load Balancer', ip: '192.168.30.5', status: 'OFFLINE', cpu: 0, mem: 0, model: 'L5030' },
 ];
 
 export default function Dashboard({ setCurrentView, setSelectedDevice }: { setCurrentView: (view: string) => void, setSelectedDevice: (device: string) => void }) {
@@ -85,8 +86,8 @@ export default function Dashboard({ setCurrentView, setSelectedDevice }: { setCu
             className="glass-panel rounded-xl overflow-hidden flex flex-col border border-border hover:border-primary/50 transition-colors group cursor-pointer relative z-10"
           >
             <div className="h-40 relative bg-background/50 flex items-center justify-center p-4 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-surface z-10"></div>
-              <img src={device.img} alt={device.name} className="object-cover w-full h-full opacity-60 group-hover:opacity-100 transition-opacity mix-blend-luminosity group-hover:mix-blend-normal" referrerPolicy="no-referrer" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-surface z-10 pointer-events-none"></div>
+              <DeviceImage model={device.model} type={device.type} />
               
               <div className="absolute top-3 right-3 z-20">
                 {device.status === 'ONLINE' && <span className="px-2 py-1 bg-success/20 border border-success/50 text-success text-[10px] font-bold rounded shadow-glow-success">ONLINE</span>}
